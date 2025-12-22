@@ -1,0 +1,8 @@
+<--- How to Push to GitHub --->
+
+git init
+git add .
+git commit -m "Day 1: Python basics"
+git branch -M main
+git remote add origin <your_repo_url>
+git push -u origin main
