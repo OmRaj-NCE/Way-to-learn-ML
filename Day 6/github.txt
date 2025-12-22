@@ -1,3 +1,0 @@
-git add .
-git commit -m "Day 6: for loop and multiplication table"
-git push
