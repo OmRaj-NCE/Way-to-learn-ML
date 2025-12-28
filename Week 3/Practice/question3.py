@@ -88,7 +88,6 @@
 # # "Is ANY char a digit inside the string 'Om1'?"
 # found = any(char.isdigit() for char in "Om1")
 # print(found)
-
 def check_password_strength(password):
     """
     Analyzes password and returns its strength level.
@@ -117,3 +116,105 @@ print("--- Password Checker ---")
 user_pass = input("Enter a password to test: ")
 strength = check_password_strength(user_pass)
 print(f"Strength Level: {strength}")
+
+
+# 12. Employee Salary Calculator (*args + **kwargs)
+# Problem:
+# Calculate total salary.
+# Input:
+# Base salary
+# Allowances (*args)
+# Deductions (**kwargs)
+# Expected Behavior:
+# Calculate net salary
+# Display breakdown
+
+# def cal_sal(base_sal, *args, **kwargs):
+#     given_sal = base_sal
+#     if len(args) > 0:
+#         for i in args:
+#             given_sal += i
+#     if len(kwargs) > 0:
+#         print("Deduction display: ")
+#     for k,v in kwargs.items():
+#         print(f"\t-     {k.capitalize()} : {v}")
+#     for ded in kwargs.values():
+#         given_sal -= ded
+#     print(f"Net salary: {given_sal}")
+# cal_sal(123211, 12332,2233, electricity=1222, food=4000, yoga=3000 )
+def salary_slip(base_sal, *allowances, **deductions):
+    # 1. Calculate Gross (Base + All Allowances) using sum()
+    total_allowance = sum(allowances)
+    gross_salary = base_sal + total_allowance
+    print("\n" + "="*30)
+    print(f"💰 Base Salary:    {base_sal}")
+    print(f"➕ Allowances:      {total_allowance} (Breakdown: {allowances})")
+    print(f"💵 GROSS SALARY:    {gross_salary}")
+    print("-" * 30)
+    # 2. Process Deductions
+    total_deduction = 0
+    print("🔻 Deductions:")
+    # Loop ONCE for both printing and calculating
+    for name, amount in deductions.items():
+        print(f"   - {name.capitalize()}: {amount}")
+        total_deduction += amount
+    print("-" * 30)
+    net_salary = gross_salary - total_deduction
+    print(f"✅ NET SALARY:      {net_salary}")
+    print("="*30 + "\n")
+# Calling the function
+salary_slip(50000, 2000, 1000, tax=500, pf=1200, insurance=800)
+
+# 13. Student Result System (Nested Functions)
+# Problem:
+# Generate student result.
+# Input:
+# Name
+# Marks list
+# Expected Behavior:
+# Calculate total & grade
+# Display pass/fail
+# Use helper functions
+def generate_result(name, marks):
+    """
+    Main function that controls the logic.
+    """
+    # --- Nested Helper 1: Calculate Grade ---
+    def get_grade(avg):
+        if avg >= 90: return "A+ (Outstanding)"
+        elif avg >= 80: return "A (Excellent)"
+        elif avg >= 70: return "B (Good)"
+        elif avg >= 60: return "C (Average)"
+        elif avg >= 33: return "D (Pass)"
+        else: return "F (Fail)"
+    # --- Nested Helper 2: Check Pass/Fail Status ---
+    # Rule: Student fails if ANY subject is below 33
+    def check_status(marks_list):
+        if any(m < 33 for m in marks_list):
+            return "FAILED (Failed in one or more subjects)"
+        return "PASSED"
+    # --- Main Logic ---
+    total_marks = sum(marks)
+    average_marks = total_marks / len(marks)
+    # We call the nested functions here
+    final_grade = get_grade(average_marks)
+    status = check_status(marks)
+    # If they failed a subject, override the grade to F
+    if "FAILED" in status:
+        final_grade = "F"
+    # --- Display Report Card ---
+    print("\n" + "="*30)
+    print(f"🎓 STUDENT REPORT: {name.upper()}")
+    print("-" * 30)
+    print(f"📄 Marks:       {marks}")
+    print(f"∑  Total:       {total_marks} / {len(marks)*100}")
+    print(f"📊 Average:     {average_marks:.2f}%")
+    print("-" * 30)
+    print(f"📢 Status:      {status}")
+    print(f"🏆 Final Grade: {final_grade}")
+    print("="*30)
+# --- Test the System ---
+# Case 1: Good Student
+generate_result("Om Raj", [85, 90, 78, 92, 88])
+# Case 2: Student failing one subject (20 marks)
+generate_result("Rohan", [50, 60, 20, 55, 65])
