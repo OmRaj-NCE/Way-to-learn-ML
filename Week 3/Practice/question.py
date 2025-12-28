@@ -211,3 +211,102 @@ for name, marks in class_data.items():
     tot, avg, high, low = analyze_marks(marks)
     print(f"{name:<10} {tot:<8} {avg:<8.1f} {high:<6} {low:<6}")
 
+# 5. Login System (Error Handling)
+# Problem:
+# Create a simple login checker.
+# Input:
+# Username
+# Password
+# Expected Behavior:
+# Raise error if inputs are empty
+# Compare with stored credentials
+# Use try-except-else-finally
+DB_USER = "admin"
+DB_PASS = "12345"
+print("--- Secure Login System ---")
+try:
+    # 1. Get Inputs
+    username = input("Enter Username: ")
+    password = input("Enter Password: ")
+    # 2. Check for Empty Inputs (The Validation)
+    # .strip() removes spaces, so "   " counts as empty
+    if len(username.strip()) == 0 or len(password.strip()) == 0:
+        # We manually STOP the program here and jump to 'except'
+        raise ValueError("Inputs cannot be empty!")
+    # 3. Check Credentials
+    if username == DB_USER and password == DB_PASS:
+        # If match, we do nothing here and let it fall to 'else'
+        pass 
+    else:
+        # If mismatch, we raise a different error message
+        raise PermissionError("Wrong username or password!")
+# 4. Catch Specific Errors
+except ValueError as e:
+    print(f"❌ Input Error: {e}")
+except PermissionError as e:
+    print(f"🚫 Security Alert: {e}")
+# 5. Run ONLY if no errors occurred
+else:
+    print("✅ Login Successful! Welcome to the dashboard.")
+# 6. Run ALWAYS (Cleanup)
+finally:
+    print("--- Session Closed ---")
+# data = {
+#     "username": "omraj123",
+#     "password": "Omraj@123"
+# }
+# try:
+#     action = input("Signup or login: ").lower()
+#     # VALIDATION 1: Check if action is empty
+#     if not action:
+#         raise ValueError("You must type 'signup' or 'login'.")
+#     # --- SIGNUP ---
+#     if action == "signup" or action == "sign-up":
+#         new_user = input("Create username: ")
+#         new_pass = input("Create password: ")
+#         # VALIDATION 2: Empty Signup checks
+#         if not new_user or not new_pass:
+#             raise ValueError("Username and Password cannot be empty.")
+#         data["username"] = new_user
+#         data["password"] = new_pass
+#         print("Signup successful! Please login now.\n")
+#         action = "login"
+#     # --- LOGIN ---
+#     if action == "login":
+#         attempts = 0
+#         max_guesses = 3
+#         while attempts < max_guesses:
+#             user_input = input("Enter username: ")
+#             pass_input = input("Enter password: ")
+#             # VALIDATION 3: Empty Login checks
+#             if not user_input or not pass_input:
+#                 raise ValueError("Inputs cannot be empty during login.")
+#             if user_input == data["username"] and pass_input == data["password"]:
+#                 print(f"✅ Welcome, {data['username']}!")
+#                 break # Success!
+#             else:
+#                 print("❌ Wrong credentials. Try again.")
+#                 attempts += 1
+#                 print(f"Attempts left: {max_guesses - attempts}")
+#         if attempts == max_guesses:
+#             # We raise a DIFFERENT error for security (optional but good practice)
+#             raise PermissionError("Account Locked. Too many failed attempts.")
+#     else:
+#         # If they typed "admin" or something random instead of signup/login
+#         raise ValueError("Invalid option selected.")
+# # --- ERROR HANDLING ---
+# except ValueError as e:
+#     # Catches empty inputs or wrong menu options
+#     print(f"\n⚠️ Input Error: {e}")
+# except PermissionError as e:
+#     # Catches the 'Account Locked' scenario
+#     print(f"\n🚫 Security Alert: {e}")
+#     print("Please contact support or wait 1 hour.")
+# # --- SUCCESS BLOCK ---
+# else:
+#     # Runs ONLY if no errors happened (Successful Login)
+#     print("\n(System: Operation completed without errors.)")
+# # --- CLEANUP ---
+# finally:
+#     # Runs NO MATTER WHAT (Even if it crashed)
+#     print("Thank You")
