@@ -218,3 +218,103 @@ def generate_result(name, marks):
 generate_result("Om Raj", [85, 90, 78, 92, 88])
 # Case 2: Student failing one subject (20 marks)
 generate_result("Rohan", [50, 60, 20, 55, 65])
+
+
+# 14. JSON-based User Database
+# Problem:
+# Store user data persistently.
+# Input:
+# Name
+# Age
+# City
+# Expected Behavior:
+# Save data in JSON file
+# Load and display all users
+# Handle file errors safely
+import json
+def save_user_data():
+    try:
+        # Try loading existing data
+        try:
+            with open("data.json", "r") as f:
+                data = json.load(f)
+        except FileNotFoundError:
+            data = {}
+            print("😍 Congrats! You are the first user")
+        # User input
+        name = input("Enter name: ").strip()
+        age = int(input("Enter age: "))
+        city = input("Enter city: ").strip()
+        # Store data
+        data[name] = {
+            "age": age,
+            "city": city
+        }
+        # Save back to JSON
+        with open("data.json", "w") as f:
+            json.dump(data, f, indent=4)
+        print("\n✅ User data saved successfully!")
+        print("📂 Current Database:")
+        print(data)
+    except ValueError:
+        print("❌ Age must be a number")
+    except Exception as e:
+        print("❌ Something went wrong:", e)
+    finally:
+        print("🔚 Program finished")
+save_user_data()
+
+# 15. Quiz Application
+# Problem:
+# Create a quiz program.
+# Input:
+# Questions stored in dictionary
+# Expected Behavior:
+# Ask questions one by one
+# Score calculation using functions
+# Final result display
+# question = {
+#     1:{"What's name of owner":"Om"},
+#     2:{"What's his age":str(19)}
+#     }
+# def quiz():
+#     score = 0
+#     print("-"*5,"Welcome User","-"*5)
+#     for k,v in question.items():
+#         for q,ans in v.items():
+#             print(f"{k}) {q}")
+#             answer = input("What's the answer: ")
+#             if ans == answer:
+#                 score += 1
+#                 print(f"Correct. +1 Score\n{score} is the current Score.")
+#             else:
+#                 return score
+# quiz()
+questions = {
+    1: {"What's name of owner": "Om"},
+    2: {"What's his age": "19"} # Stored directly as string
+}
+def quiz():
+    score = 0
+    total_q = len(questions)
+    print("-" * 5, "Welcome User", "-" * 5)
+    # Loop through the dictionary
+    for q_id, q_data in questions.items():
+        # q_data is the inner dictionary like {"What's name...": "Om"}
+        for question_text, correct_ans in q_data.items():
+            print(f"\n{q_id}) {question_text}?")
+            user_ans = input("   Your Answer: ").strip() # Remove extra spaces
+            # LOGIC FIX: Compare lowercase versions
+            if user_ans.lower() == correct_ans.lower():
+                score += 1
+                print("   ✅ Correct!")
+            else:
+                print(f"   ❌ Wrong! The answer was '{correct_ans}'")
+    # Final Result
+    print("\n" + "="*20)
+    print(f"🏆 Final Score: {score}/{total_q}")
+    if score == total_q:
+        print("   Perfect Score! You know Om well.")
+    else:
+        print("   Better luck next time!")
+quiz()
