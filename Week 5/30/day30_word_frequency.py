@@ -11,3 +11,11 @@ for word in words:
 print("\nWord Frequency:")
 for word, count in freq.items():
     print(word, ":", count)
+
+
+# 🧠 THINK LIKE A DATA ENGINEER
+# Ask yourself:
+# How would I remove punctuation?
+# How would I count only unique words?
+# How would I find the most frequent word?
+# These questions lead to NLP and ML feature engineering.
