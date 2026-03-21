@@ -55,7 +55,7 @@ np.linspace(0, 1, 5)
 # print(arr)
 # arr_mul5 = arr * 5
 # print(arr_mul5)
-# print(np.arange(0,21,1))
+# print(np.arange(1,21,1))
 # print(np.zeros(10))
 # print("Shape:", arr.shape)
 # print("Datatype:", arr.dtype)
