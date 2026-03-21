@@ -44,18 +44,30 @@ np.linspace(0, 1, 5)
 # Create array from 1–20
 # Create array of 10 zeros
 # Print shape and datatype
+# num1 = []
+# while True:
+#     num = input("Enter you number or 'quit': ")
+#     if num == 'quit'.lower():
+#         break
+#     if num != 'quit':
+#         num1.append(int(num))
+# arr = np.array(num1)
+# print(arr)
+# arr_mul5 = arr * 5
+# print(arr_mul5)
+# print(np.arange(0,21,1))
+# print(np.zeros(10))
+# print("Shape:", arr.shape)
+# print("Datatype:", arr.dtype)
+
 num1 = []
 while True:
-    num = input("Enter you number or 'quit': ")
-    if num == 'quit'.lower():
+    num = input("Enter number or 'quit': ")
+    if num.lower() == 'quit':
         break
-    if num != 'quit':
+    try:
         num1.append(int(num))
+    except ValueError:
+        print("Invalid input, try again")
 arr = np.array(num1)
 print(arr)
-arr_mul5 = arr * 5
-print(arr_mul5)
-print(np.arange(0,21,1))
-print(np.zeros(10))
-print("Shape:", arr.shape)
-print("Datatype:", arr.dtype)
