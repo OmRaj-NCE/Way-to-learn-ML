@@ -27,6 +27,13 @@ slice_arr = arr[1:3]
 print(slice_arr)
 slice_arr[0] = 100
 print(arr)
+# When you do:
+# slice_arr[0] = 100
+# You are actually doing:
+# arr[1] = 100
+# So memory becomes:
+# [1] [100] [3] [4]
+
 # Output: [1 100 3 4]
 # ⚠️ This is HUGE: NumPy slicing does NOT copy → it creates a view
 # 🧠 To create copy:
