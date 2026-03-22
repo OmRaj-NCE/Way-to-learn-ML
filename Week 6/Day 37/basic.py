@@ -40,6 +40,20 @@ print(arr)
 copy_arr = arr[1:3].copy()
 print(copy_arr)
 
+# NumPy Arrays - No Copy, Just a Window! 🪟
+# Imagine arr is a row of 5 boxes with numbers in them:
+# arr → [ 10 | 20 | 30 | 40 | 50 ]
+#          0    1    2    3    4
+# s = arr[2:5] — you're not making new boxes! You're just peeking through a window at boxes 2, 3, 4:
+# s → [ 30 | 40 | 50 ]
+#        0    1    2
+# s is a view — it points to the same boxes as arr.
+# s[1] = 999 — you change box #1 of s, which is actually box #3 of arr:
+# arr → [ 10 | 20 | 30 | 999 | 50 ]
+#                         ↑
+#                    changed here!
+# Output:
+# [ 10  20  30 999  50]
 
 # 🧠 PART 4 — 2D ARRAYS (REAL DATA)
 arr = np.array([
