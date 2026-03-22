@@ -71,3 +71,112 @@ while True:
         print("Invalid input, try again")
 arr = np.array(num1)
 print(arr)
+
+
+# --------------------------------------------------------
+
+# 🧠 1. Array vs List (Deep Difference)
+# Python List
+# l = [1,2,3]
+# NumPy Array
+# a = np.array([1,2,3])
+# 🔥 Key Difference
+# Feature	List	NumPy
+# Speed	    Slow	Fast
+# Type	    Mixed	Same type
+# Math	    Manual  loop	Vectorized
+# Memory	High	Efficient
+
+
+# 🧠 2. Homogeneous Nature (VERY IMPORTANT)
+arr = np.array([1, 2, 3.5])
+print(arr)
+# Output: # [1.  2.  3.5]
+# 👉 NumPy converts everything to same datatype
+
+
+# 🧠 3. dtype Control (ADVANCED)
+arr = np.array([1,2,3], dtype=int)
+arr1 = np.array([1,2,3], dtype=float)
+print(arr)
+print(arr1)
+# 👉 Forces datatype
+
+
+# 🧠 4. Vectorized Operations (CORE ML SKILL)
+arr = np.array([1,2,3])
+print(arr + 5)
+print(arr * 2)
+print(arr ** 2)
+# No loops → very important
+
+
+# 🧠 5. Array + Array Operations
+a = np.array([1,2,3])
+b = np.array([4,5,6])
+print(a + b)
+print(a * b)
+# 👉 Element-wise operations
+
+
+# 🧠 6. Comparison Operations
+arr = np.array([10, 20, 30])
+print(arr > 15)
+# Output: [False True True]
+# 👉 Used in ML filtering
+
+
+# 🧠 7. Boolean Indexing (VERY IMPORTANT)
+arr = np.array([10, 20, 30, 5])
+print(arr[arr > 10])
+# Output: [20 30]
+# 👉 This replaces loops in ML pipelines
+
+
+# 🧠 8. Built-in Functions
+arr = np.array([1,2,3,4])
+print(arr.sum())
+print(arr.mean())
+print(arr.max())
+print(arr.min())
+
+
+# 🧠 9. Shape Understanding
+arr = np.array([1,2,3])
+print(arr.shape)
+# Output: (3,)
+# 👉 1D array = vector
+arr = np.array([[1,2,3],[1,2,3]])
+print(arr.shape)
+arr = np.array([[1,2,3],[1,2,3],[1,2,3]])
+print(arr.shape)
+
+
+# 🛠️ 🔥 ADVANCED MINI TASK (DO THIS)
+# Modify your program:
+# Add:
+# Print numbers greater than average
+# Print only even numbers using NumPy (no loop)
+# Print sum, mean, max, min
+# Convert array to float type
+n1 = []
+while True:
+    n2 = input("Enter a number or 'quit': ")
+    if n2 == 'quit':
+        break
+    try:
+        # if n2 == '' or n2 == ' ' or len(n2) == 0:
+        #     print("No number")
+        #     break
+        n1.append(int(n2))
+    except ValueError:
+        print("Invalid input")
+arr = np.array(n1)
+print(arr)
+avg = arr.mean()
+print(avg)
+print(arr[avg < arr])
+print(arr[arr % 2 == 0])
+print(arr.max(), arr.min(), arr.mean(), arr.sum())
+arr_float = np.array(arr, dtype=float)
+print(arr_float)
